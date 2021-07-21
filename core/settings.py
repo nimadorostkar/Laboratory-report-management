@@ -100,8 +100,6 @@ DATABASES = {
 
 
 
-
-
 # Required for all-auth
 SITE_ID = 1
 
