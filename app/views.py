@@ -8,7 +8,7 @@ from django import template
 
 
 
-@login_required(login_url="/login/")
+@login_required()
 def index(request):
 
     context = {}
@@ -17,7 +17,7 @@ def index(request):
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
+@login_required()
 def pages(request):
     context = {}
     # All resource paths end in .html.
