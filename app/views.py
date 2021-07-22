@@ -16,12 +16,23 @@ from django.urls import reverse
 
 @login_required()
 def index(request):
+    a = "n"
+    context = { 'a': a }
+    return render(request, 'index.html', context)
 
-    context = {}
-    context['segment'] = 'index'
 
-    html_template = loader.get_template( 'index.html' )
-    return HttpResponse(html_template.render(context, request))
+
+
+
+@login_required()
+def about(request):
+    a = "n"
+    context = { 'a': a }
+    return render(request, 'about.html', context)
+
+
+
+
 
 @login_required()
 def pages(request):
