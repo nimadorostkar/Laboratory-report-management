@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
 
   <title>
-    Django Soft UI Dashboard - {% block title %}{% endblock %} | AppSeed
+    lab {% block title %}{% endblock %}
   </title>
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -25,7 +25,7 @@
 </head>
 <body class="g-sidenav-show bg-gray-100">
 
-
+   {% include "includes/navigation.html" %}
 
   <main class="main-content mt-4 border-radius-lg">
 
@@ -35,8 +35,7 @@
 
   </main>
 
-
-
+  {% include "includes/footer.html" %}
   {% include "includes/scripts.html" %}
 
   <!-- Specific JS goes HERE -->
