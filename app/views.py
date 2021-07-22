@@ -1,8 +1,14 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django import template
+from . import models
+from django.contrib.auth.models import User
+from .forms import UserForm
+from django.urls import reverse
+
+
 
 
 
@@ -39,3 +45,39 @@ def pages(request):
 
         html_template = loader.get_template( 'page-500.html' )
         return HttpResponse(html_template.render(context, request))
+
+
+
+
+
+@login_required
+def profile(request):
+  if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            username = user_form.cleaned_data['username']
+            first_name = user_form.cleaned_data['first_name']
+            last_name = user_form.cleaned_data['last_name']
+            email = user_form.cleaned_data['email']
+            password1 = user_form.cleaned_data['password1']
+            password2 = user_form.cleaned_data['password2']
+            user_form.save()
+            context = {'user_form': user_form }
+            return render(request, 'profile.html', context)
+  else:
+      user_form = UserForm(instance=request.user)
+
+  context = { 'user_form': user_form }
+  return render(request, 'profile.html', context)
+
+
+
+
+
+
+
+
+
+
+
+#End
